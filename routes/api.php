@@ -22,3 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('login', [AuthenticationController::class, 'login'])->name('login');
 Route::post('register', [AuthenticationController::class, 'register'])->name('register');
 Route::post('claims', [AuthenticationController::class, 'claims'])->name('claims');
+
+Route::middleware(['jwt.verify'])->group(function () {
+    Route::get('product', function () {
+        return "Masuk Pak Eko";
+    });
+});
