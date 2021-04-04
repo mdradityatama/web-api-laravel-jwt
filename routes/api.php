@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +25,10 @@ Route::post('login', [AuthenticationController::class, 'login'])->name('login');
 Route::post('register', [AuthenticationController::class, 'register'])->name('register');
 Route::post('claims', [AuthenticationController::class, 'claims'])->name('claims');
 
-Route::middleware(['jwt.verify'])->group(function () {
-    Route::get('product', function () {
-        return "Masuk Pak Eko";
-    });
+Route::middleware(['jwt.verify'])->group(function ()
+{
+    Route::get('products', [ProductController::class, 'index'])->name('productsIndex');
+    Route::post('products', [ProductController::class, 'store'])->name('productStore');
+
+    Route::get('orders', [OrderController::class, 'index'])->name('ordersIndex');
 });
