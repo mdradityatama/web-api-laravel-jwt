@@ -29,15 +29,15 @@ class JwtMiddleware
         {
             if ($e instanceof TokenInvalidException)
             {
-                return response()->json(MessageError::TOKEN_INVALID);
+                return response()->json(MessageError::TOKEN_INVALID, 401);
             }
             else if ($e instanceof TokenExpiredException)
             {
-                return response()->json(MessageError::TOKEN_EXPIRED);
+                return response()->json(MessageError::TOKEN_EXPIRED, 401);
             }
             else
             {
-                return response()->json(MessageError::TOKEN_NOT_FOUND);
+                return response()->json(MessageError::TOKEN_NOT_FOUND, 401);
             }
         }
 

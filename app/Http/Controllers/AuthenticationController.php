@@ -46,7 +46,10 @@ class AuthenticationController extends Controller
         return response()->json([
             'succeeded' => true,
             'message' => "",
-            'data' => [compact('user', 'token')]
+            'data' => [
+                'user' => $user,
+                'token' => $token
+            ]
         ]);
     }
 
