@@ -31,4 +31,5 @@ Route::middleware(['jwt.verify'])->group(function ()
     Route::post('products', [ProductController::class, 'store'])->name('productStore');
 
     Route::get('orders', [OrderController::class, 'index'])->name('ordersIndex');
+    Route::get('orders-by-user', [OrderController::class, 'byUser'])->name('ordersByUser');
 });
